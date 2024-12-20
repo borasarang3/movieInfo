@@ -4,6 +4,7 @@ import com.woori.movieinfo.DTO.MovieDTO;
 import com.woori.movieinfo.Entity.MovieEntity;
 import com.woori.movieinfo.Repository.MovieRepository;
 import com.woori.movieinfo.Util.FileUpload;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -36,6 +37,7 @@ public class MovieService {
     출력 : 해당 데이터들(list)과 page정보를 전달
     설명 : 요청한 페이지번호에 해당하는 데이터를 조회해서 전달
     ---------------------------------*/
+    @Operation(summary = "영화 목록")
     public Page<MovieDTO> list(Pageable page){
         //1. 페이지정보를 재가공
         int currentPage = page.getPageNumber()-1;

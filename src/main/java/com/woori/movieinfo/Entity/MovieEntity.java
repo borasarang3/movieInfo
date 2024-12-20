@@ -1,5 +1,6 @@
 package com.woori.movieinfo.Entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +20,7 @@ import lombok.*;
 public class MovieEntity {
     @Id //생략불가능
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    //@Schema(description = "영화정보 일련번호", example = "1")
     private Integer code; //일련번호
     private String name;
     private String director;

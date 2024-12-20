@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -30,14 +31,17 @@ public class MovieController {
 
     @Operation(summary = "등록폼", description = "등록폼 페이지로 이동한다.")
     @GetMapping("/register")
-    public String registerHTML() {
+    public String registerHTML(Model model) {
+        //검증처리가 필요하면 빈 MovieDTO를 생성해서 전달합니다.
+        //입력폼에도 무조건 Object+Field로 구성해야 한다.
+        model.addAttribute("movieDTO", new MovieDTO());
         return "register";
     }
 
     @Operation(summary = "등록처리",
             description = "데이터베이스에 등록 후 목록으로 이동한다.")
     @PostMapping("/register")
-    public String registerService(MovieDTO movieDTO, MultipartFile imagefile) {
+    public String registerService(MovieDTO movieDTO, @RequestParam("imagefile") MultipartFile imagefile) {
         movieService.insert(movieDTO, imagefile);
 
         return "redirect:/list";

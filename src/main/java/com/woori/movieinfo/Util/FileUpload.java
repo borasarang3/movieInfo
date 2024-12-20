@@ -29,10 +29,10 @@ public class FileUpload {
 
         //c:/movie/432-erw3342-4324.jpg
         String path = imgLocation + filename; //최종 저장될 위치와 파일명
-
+        System.out.println(path);
         //외부작업은 반드시 try~catch로 예외처리
         try { //정상적인 작업
-            File folder = new File(path); //작얼할 파일지정, c:/movie/432-erw3342-4324.jpg
+            File folder = new File(imgLocation); //작얼할 파일지정, c:/movie/432-erw3342-4324.jpg
             if (!folder.exists()) { //지정된 위치에 폴더가 없으면, /moive/
                 boolean result = folder.mkdir(); //지정된 위치에 폴더를 생성, /movie/
             }
